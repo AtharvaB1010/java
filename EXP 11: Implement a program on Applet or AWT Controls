@@ -1,0 +1,83 @@
+import java.awt.*; 
+import java.awt.event.*; 
+public class SimpleCalculator extends Frame implements ActionListener { 
+// Declaring AWT controls (components) 
+TextField tf1, tf2, tfResult; 
+Label label1, label2, label3; 
+Button btnAdd, btnSub, btnMul, btnDiv, btnClear; 
+// Constructor to set up the GUI 
+public SimpleCalculator() { 
+// Setting layout and title 
+setLayout(new FlowLayout()); 
+setTitle("Simple Calculator"); 
+// Creating components 
+label1 = new Label("First Number: "); 
+tf1 = new TextField(10); 
+label2 = new Label("Second Number: "); 
+tf2 = new TextField(10); 
+label3 = new Label("Result: "); 
+tfResult = new TextField(10); 
+tfResult.setEditable(false);  // Result should not be editable 
+// Creating buttons for operations 
+btnAdd = new Button("+"); 
+btnSub = new Button("-"); 
+btnMul = new Button("*"); 
+btnDiv = new Button("/"); 
+btnClear = new Button("Clear"); 
+// Adding components to the frame 
+add(label1); add(tf1); 
+add(label2); add(tf2); 
+add(label3); add(tfResult); 
+add(btnAdd); add(btnSub); add(btnMul); add(btnDiv); add(btnClear); 
+// Adding ActionListener to buttons 
+btnAdd.addActionListener(this); 
+btnSub.addActionListener(this); 
+btnMul.addActionListener(this); 
+btnDiv.addActionListener(this); 
+btnClear.addActionListener(this); 
+// Setting size of frame and visibility 
+setSize(300, 300); 
+setVisible(true); 
+// Adding window listener to close the window 
+addWindowListener(new WindowAdapter() { 
+public void windowClosing(WindowEvent we) { 
+dispose(); 
+} 
+}); 
+} 
+// ActionListener method to handle button clicks 
+public void actionPerformed(ActionEvent e) { 
+try { 
+// Retrieving numbers from text fields 
+int num1 = Integer.parseInt(tf1.getText()); 
+int num2 = Integer.parseInt(tf2.getText()); 
+int result = 0; 
+// Checking which button was clicked 
+if (e.getSource() == btnAdd) { 
+result = num1 + num2; 
+} else if (e.getSource() == btnSub) { 
+result = num1 - num2; 
+} else if (e.getSource() == btnMul) { 
+result = num1 * num2; 
+} else if (e.getSource() == btnDiv) { 
+result = num1 / num2; 
+} else if (e.getSource() == btnClear) { 
+// Clearing all text fields 
+tf1.setText(""); 
+tf2.setText(""); 
+tfResult.setText(""); 
+return; 
+} 
+// Setting the result to the result text field 
+tfResult.setText(String.valueOf(result)); 
+} catch (NumberFormatException ex) { 
+tfResult.setText("Invalid Input"); 
+} catch (ArithmeticException ex) { 
+tfResult.setText("Cannot divide by 0"); 
+} 
+} 
+// Main method to run the calculator 
+public static void main(String[] args) { 
+new SimpleCalculator(); 
+} 
+}
