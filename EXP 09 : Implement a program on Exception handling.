@@ -1,0 +1,43 @@
+/ Java program to demonstrate Exception Handling 
+public class JavaExceptionExample { 
+ 
+    // Method that can throw multiple exceptions 
+    public static void divide(int a, int b) throws ArithmeticException { 
+        if (b == 0) { 
+            // Throwing ArithmeticException for division by zero 
+            throw new ArithmeticException("Division by zero is not allowed."); 
+        } else { 
+            // Performing division if no exception 
+            int result = a / b; 
+            System.out.println("Result: " + result); 
+        } 
+    } 
+  
+ 
+    public static void main(String[] args) { 
+        // Try block to catch exceptions 
+        try { 
+            // Simulating a potential exception (division by zero) 
+            divide(10, 0); 
+        }  
+        // Catching specific exception (ArithmeticException) 
+        catch (ArithmeticException e) { 
+            System.out.println("Caught Exception: " + e.getMessage()); 
+        }  
+        // Finally block that always executes 
+        finally { 
+            System.out.println("Finally block executed."); 
+        } 
+ 
+        // Using throw to manually throw an exception 
+        try { 
+            // Manually throwing an exception 
+            throw new NullPointerException("Manually thrown NullPointerException."); 
+        }  
+        catch (NullPointerException e) {  
+            System.out.println("Caught Exception: " + e.getMessage()); 
+        }  
+        finally { 
+            System.out.println("Finally block executed after manual throw."); 
+        } 
+    } 
