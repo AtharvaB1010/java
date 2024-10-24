@@ -1,0 +1,30 @@
+// Custom exception class 
+class AgeException extends Exception { 
+// Constructor to initialize exception message 
+public AgeException(String message) { 
+super(message); 
+} 
+} 
+// Main class 
+public class UserDefinedExceptionDemo { 
+// Method to check if age is valid 
+static void validateAge(int age) throws AgeException { 
+if (age < 18) { 
+throw new AgeException("Age is less than 18, access denied."); 
+} else { 
+System.out.println("Age is valid, access granted."); 
+} 
+} 
+// Main method 
+public static void main(String[] args) { 
+try { 
+// Test with valid and invalid age 
+validateAge(16);  // This will throw an exception 
+validateAge(21);  // This won't be executed due to the exception above 
+} catch (AgeException e) { 
+// Handle the custom exception 
+System.out.println("Exception caught: " + e.getMessage()); 
+} 
+System.out.println("Program continues..."); 
+} 
+}
